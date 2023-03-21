@@ -24,8 +24,10 @@ from django.http import HttpResponse
 from backend import views as backend_views
 from frontend import views as frontend_views
 
+
 urlpatterns = [
     path("", frontend_views.frontend),
-    path("server/", backend_views.backend)
+    path("server/", backend_views.backend),
+    path("server/get_chat_response",backend_views.get_chat_response)
 ]
 
