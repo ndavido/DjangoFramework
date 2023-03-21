@@ -29,9 +29,12 @@ def responseAbout(request, slug=None):
             <h1>Welcome! My name is...</h1>
             <p>Welcome to my humble site.</p>
         ''')
+    
+from backend import views as backend_views
 
 urlpatterns = [
     path("", response),
-    path("about/", responseAbout)
+    path("about/", responseAbout),
+    path("server/", backend_views.backend)
 ]
 
