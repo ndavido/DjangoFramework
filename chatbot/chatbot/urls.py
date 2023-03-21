@@ -20,21 +20,12 @@ from django.http import HttpResponse
 '''urlpatterns = [
     path('admin/', admin.site.urls),
 ]'''
-
-def response(request, slug=None):
-    return HttpResponse("<h1>Welcome</h1>")
-
-def responseAbout(request, slug=None):
-    return HttpResponse('''
-            <h1>Welcome! My name is...</h1>
-            <p>Welcome to my humble site.</p>
-        ''')
     
 from backend import views as backend_views
+from frontend import views as frontend_views
 
 urlpatterns = [
-    path("", response),
-    path("about/", responseAbout),
+    path("", frontend_views.frontend),
     path("server/", backend_views.backend)
 ]
 
