@@ -26,7 +26,14 @@ def bot_response(message):
     elif message == "Help":
         last_message = message
         commands = '''
-            Yes
+            <p>-> Gimme image</p>
+            <p>    ->  I will reply with a random image.</p>
+            <p>-> Tell me about SOMETHING</p>
+            <p>    -> SOMETHING can be any kind of sentence, I will</p> 
+            <p>       give you a Wikipedia link to that article back.</p>
+            <p>-> Weather in <city></p>
+            <p>    -> For example, weather in Pori, I will respond</p>
+            <p>       back with the weather in Pori</p>
         '''
         return commands
     else:
