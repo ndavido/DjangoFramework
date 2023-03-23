@@ -1,4 +1,5 @@
 import random
+import requests
 
 last_message = ""
 
@@ -26,16 +27,38 @@ def bot_response(message):
     elif message == "Help":
         last_message = message
         commands = '''
-            <p>-> Gimme image</p>
-            <p>    ->  I will reply with a random image.</p>
-            <p>-> Tell me about SOMETHING</p>
-            <p>    -> SOMETHING can be any kind of sentence, I will</p> 
-            <p>       give you a Wikipedia link to that article back.</p>
-            <p>-> Weather in <city></p>
-            <p>    -> For example, weather in Pori, I will respond</p>
-            <p>       back with the weather in Pori</p>
+            <div>
+                <b><p>Gimme image</p></b>
+                <p>I will reply with a random image.</p>
+            </div>
+            <br>
+            <div>
+                <b><p>Tell me about SOMETHING</p></b>
+                <p>SOMETHING can be any kind of sentence, I will give you a Wikipedia link to that article back.</p>
+            </div>
+            <br>
+            <div>
+                <b><p>Weather in &lt;city&gt;</p></b>
+                <p>For example, weather in Pori, I will respond back with the weather in Pori</p>
+            </div> 
         '''
         return commands
+    elif message.startswith("weather in"):
+        city = message.replace("weather in ", "")
+        url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid=8dd0bfdf34498af25b68abf9856bb663&units=metric"
+        
+        response = requests.get(url)
+        data = response.json()
+        print(data)
+        if data["cod"] != "404":
+            weather_info = data["weather"][0]["description"]
+            temperature = data["main"]["temp"]
+            feels_like = data["main"]["feels_like"]
+            
+            message = f"The weather in {city} is {weather_info}. The temperature is {temperature}°C, and it feels like {feels_like}°C."
+            return message
+        else:
+            return "Sorry, I couldn't find the weather information for that city."
     else:
         last_message = message
         return "Cannot comprehend, type 'Help' to find out what I know :)"
