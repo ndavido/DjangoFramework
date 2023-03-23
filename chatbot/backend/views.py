@@ -8,6 +8,12 @@ def backend(request, slug=None):
 import json
 from .responses import bot_response
 
+def get_first_message(request, slug=None):
+    response = {
+        "message": "Hello, how can I help you today?"
+    }
+    return HttpResponse(json.dumps(response))
+
 def get_chat_response(request, slug=None):
     data = request.GET
     message = data.get("message")
