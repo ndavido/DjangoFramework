@@ -49,7 +49,7 @@ def bot_response(message):
         
         response = requests.get(url)
         data = response.json()
-        print(data)
+        
         if data["cod"] != "404":
             weather_info = data["weather"][0]["description"]
             temperature = data["main"]["temp"]
