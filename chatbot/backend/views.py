@@ -17,7 +17,7 @@ def get_first_message(request, slug=None):
 def get_chat_response(request, slug=None):
     data = request.GET
     message = data.get("message")
-    
+    message = message.lower()
     response = {
         "message": bot_response(message)
     }
