@@ -41,6 +41,15 @@ def bot_response(message):
                 <b><p>Weather in &lt;city&gt;</p></b>
                 <p>For example, weather in Pori, I will respond back with the weather in Pori</p>
             </div> 
+            <br>
+            <div>
+                <b><p>Hello there!</p></b>
+                <p>Recieve the most appropriate response!</p>
+            </div> 
+            <div>
+                <b><p>Who was in Paris?</p></b>
+                <p>Find out who was in Paris!</p>
+            </div> 
         '''
         return commands
     elif message.startswith("weather in"):
@@ -59,6 +68,12 @@ def bot_response(message):
             return message
         else:
             return "Sorry, I couldn't find the weather information for that city."
+    elif message.startswith("hello there"):
+        message = "General Kenobi!"
+        return message
+    elif message.startswith("who was in paris"):
+        message = "Jay-Z and Kanye"
+        return message
     else:
         last_message = message
         return "Cannot comprehend, type 'Help' to find out what I know :)"
